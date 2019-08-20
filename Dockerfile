@@ -1,7 +1,7 @@
 FROM centos:7
 MAINTAINER ursbrchandra@gmail.com
 RUN yum -y update
-RUN yum -y install nginx 
+RUN yum --enablerepo=epel -y install nginx 
 RUN yum -y install php 
 RUN yum -y install php-gd 
 RUN yum -y install php-mysql
