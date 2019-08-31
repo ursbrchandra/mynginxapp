@@ -2,7 +2,7 @@
 set -e
 
 if [ "${1:0:1}" = '-' ]; then
-	set -- mysqld_safe "$@"
+	set -- mysqld   "$@"
 fi
 
 if [ "$1" = 'mysqld_safe' ]; then
@@ -47,11 +47,11 @@ if [ "$1" = 'mysqld_safe' ]; then
 			
 			if [ "$MYSQL_DATABASE" ]; then
 				echo "GRANT ALL ON \`$MYSQL_DATABASE\`.* TO '$MYSQL_USER'@'%' ;" >> "$tempSqlFile"
-			fi
+			fi  
 		fi
 		
 		echo 'FLUSH PRIVILEGES ;' >> "$tempSqlFile"
-		cat code/createtable.sql >> "$tempSqlFile"
+		cat /opt/createtable.sql >> "$tempSqlFile"
 		
 		set -- "$@" --init-file="$tempSqlFile"
 	fi
